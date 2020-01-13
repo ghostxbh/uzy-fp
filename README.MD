@@ -10,9 +10,12 @@
 
 
 ## modules
-- [] SMS server
-- [] Mail server
-- [] File server
+- [x] SMS server
+    - [ ] aliyun
+    - [ ] tencent
+    - [x] other
+- [ ] Mail server
+- [ ] File server
 
 ## Plan
 - Complete the architecture setting
