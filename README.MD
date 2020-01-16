@@ -29,9 +29,9 @@
         - [ ] tencent
         - [ ] youpaiyun
     - fp-basic
-        - [x] model
+        - [ ] model
     - fp-common
-        - [x] common
+        - [ ] common
 
 ## Plan
 - Complete the architecture setting
