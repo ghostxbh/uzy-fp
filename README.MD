@@ -28,6 +28,8 @@
         - [ ] aliyun
         - [ ] tencent
         - [ ] youpaiyun
+    - fp-sso
+        - [ ] sso
     - fp-basic
         - [ ] model
     - fp-common
