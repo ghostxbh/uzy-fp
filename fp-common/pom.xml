@@ -5,10 +5,11 @@
 
 	<groupId>com.uzykj</groupId>
 	<artifactId>fp-common</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 
 	<name>fp-common</name>
 	<description>Demo project for Spring Boot</description>
+	<url>https://github.com/uzykj/uzy-fp/tree/master/fp-common</url>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
