@@ -1,7 +1,5 @@
 package com.uzykj.fpcommon.utils;
 
-import com.tongwei.common.model.ResultCode;
-
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,9 +11,9 @@ import java.io.PrintWriter;
  */
 public class ResponseUtil {
 
-    private static final String ForbiddenJsonMsg = "{\"errorCode\":"+ResultCode.SSO_LOGIN_REJECTED_ERROR+",\"msg\":\"您被禁止登录!\"}";
+    private static final String ForbiddenJsonMsg = "{\"errorCode\":"+401+",\"msg\":\"您被禁止登录!\"}";
 
-    private static final String UnAuthorizedJsonMsg = "{\"errorCode\":"+ResultCode.SSO_PERMISSION_ERROR+",\"msg\":\"您没有访问权限!\"}";
+    private static final String UnAuthorizedJsonMsg = "{\"errorCode\":"+404+",\"msg\":\"您没有访问权限!\"}";
 
     public static void responseJson(HttpServletResponse resp, String msg) {
         PrintWriter writer = null;
