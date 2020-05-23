@@ -1,4 +1,4 @@
-package com.uzykj.fpcommon.utils;
+package com.uzykj.fpcommon.utils.crypto;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -8,7 +8,7 @@ import java.security.NoSuchAlgorithmException;
  * @date 2020/2/8
  * @description MD5加密工具
  */
-public class MD5Util {
+public class Md5 {
     public static String md5(String code) {
         MessageDigest md = null;
         try {

@@ -1,4 +1,4 @@
-package com.uzykj.fpcommon.utils;
+package com.uzykj.fpcommon.utils.crypto;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,11 +15,11 @@ import java.security.SecureRandom;
  * @date 2020/2/8
  * @description AES加密工具
  */
-public class AESUtil {
+public class Aes {
 
     private static String encodeSalt;
 
-    private static final Logger logger = LoggerFactory.getLogger(AESUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(Aes.class);
 
     private static byte[] encode0(String encodeRules, String content)
             throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, UnsupportedEncodingException,
@@ -108,8 +108,8 @@ public class AESUtil {
     }
 
     public static void setEncodeSalt(String encodeSalt) {
-        if (AESUtil.encodeSalt == null) {
-            AESUtil.encodeSalt = encodeSalt;
+        if (Aes.encodeSalt == null) {
+            Aes.encodeSalt = encodeSalt;
             logger.info("加密盐值设置完毕!");
         } else {
             logger.error("加密盐值已经存在,请勿重复设置!");
