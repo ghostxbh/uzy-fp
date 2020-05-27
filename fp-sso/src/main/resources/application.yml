@@ -7,12 +7,13 @@ spring:
 logging:
   level:
     root: info #日志配置DEBUG,INFO,WARN,ERROR
-    com.uzykj.fpsso: debug
+    com.macro.mall: debug
+
 
 mybatis:
   mapper-locations:
-    - classpath:dao/*.xml
-    - classpath*:com/**/mapper/*.xml
+    - classpath: mapper/*.xml
+    - classpath*: com/**/mapper/*.xml
 
 jwt:
   tokenHeader: Authorization #JWT存储的请求头
