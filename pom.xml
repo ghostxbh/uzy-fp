@@ -10,6 +10,7 @@
 
     <modules>
         <module>fp-sso</module>
+        <module>fp-ocr</module>
         <module>fp-sms</module>
         <module>fp-mail</module>
         <module>fp-file</module>
