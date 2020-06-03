@@ -23,13 +23,13 @@
         - [ ] gmail
         - [ ] sina
     - fp-file
-        - [ ] qiniu
+        - [x] qiniu
         - [ ] qingyun
         - [ ] aliyun
         - [ ] tencent
         - [ ] youpaiyun
     - fp-sso
-        - [ ] sso
+        - [x] sso
     - fp-basic
         - [ ] model
     - fp-common
