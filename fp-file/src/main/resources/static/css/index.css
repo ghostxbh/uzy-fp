@@ -1,0 +1,23 @@
+/* Created by ghostxbh  */
+body {
+    background: #efefef;
+    font-size: 14px;
+}
+
+.page-header {
+    padding-bottom: 9px;
+    margin: 40px 0 20px 50px;
+    border-bottom: 1px solid #eee;
+}
+
+.main {
+    width: 86%;
+    height: 600px;
+    margin: auto;
+    background: #fff;
+    min-height: 90%;
+}
+
+.main_body {
+    padding: 30px 35px;
+}

@@ -1,0 +1,40 @@
+server:
+  port: 8003
+spring:
+  profiles:
+    active: dev #默认为开发环境
+  # thymeleaf 配置
+  thymeleaf:
+    prefix: "classpath:/templates/"
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    cache: false
+    servlet:
+      content-type: text/html
+    chain:
+      strategy:
+        content:
+          enabled: true
+          paths: /**
+  # mvc
+  mvc:
+    static-path-pattern: /static/**
+
+logging:
+  level:
+    root: info #日志配置DEBUG,INFO,WARN,ERROR
+    com.uzykj.fpfile: debug
+
+oss:
+  qiniu:
+    access: 27aLi4LEo_c5zP8dspIjJ3HjYZ2tv7mREns53HdL
+    secret: y38npyqDlYNDc2uIDesPbgOsZulUZqzjrp3wzDqU
+    file_zone: uzy-file
+    file_domain: file.uzykj.com
+  ali:
+    access:
+    secret:
+
+file:
+  store-path: /Users/xubenhao/IdeaProjects/Idea_me/uzy-fp/fp-file/src/main/resources/static/images/
