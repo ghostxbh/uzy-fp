@@ -28,13 +28,13 @@ logging:
 
 oss:
   qiniu:
-    access: 27aLi4LEo_c5zP8dspIjJ3HjYZ2tv7mREns53HdL
-    secret: y38npyqDlYNDc2uIDesPbgOsZulUZqzjrp3wzDqU
-    file_zone: uzy-file
-    file_domain: file.uzykj.com
+    access:
+    secret:
+    file_zone:
+    file_domain:
   ali:
     access:
     secret:
 
 file:
-  store-path: /Users/xubenhao/IdeaProjects/Idea_me/uzy-fp/fp-file/src/main/resources/static/images/
+  store-path:
