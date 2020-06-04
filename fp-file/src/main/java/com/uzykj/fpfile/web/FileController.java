@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -34,13 +35,10 @@ public class FileController {
         return "index";
     }
 
-    public static void main(String[] args) {
-        log.info(System.getProperty("user.dir"));
-    }
-
     @PostMapping("/upload")
+    @ResponseBody
     @ApiOperation("上传")
-    public String upload(@RequestParam MultipartFile file) {
+    public String upload(@RequestParam MultipartFile file, @RequestParam String type) {
         JSONObject jsonObject = new JSONObject();
         // 判断文件是否为空
         if (!file.isEmpty()) {
@@ -57,7 +55,7 @@ public class FileController {
                 log.log(Level.WARNING, "[file contro]", e);
             }
 
-            jsonObject.put("success", true);
+            jsonObject.put("state", "success");
             jsonObject.put("filename", newName);
         }
         return jsonObject.toJSONString();

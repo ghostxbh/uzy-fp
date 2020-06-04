@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @description qiniu api
  */
 @RestController
-@RequestMapping("api/qiniu")
+@RequestMapping("api/oss/qiniu")
 @Api("七牛oss")
 public class QiniuController {
 
