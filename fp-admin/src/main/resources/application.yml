@@ -1,0 +1,37 @@
+app:
+  id: fp-admin
+# apollo配置
+apollo:
+  bootstrap:
+    enabled: true
+    namespaces: application
+  autoUpdateInjectedSpringProperties: false
+  meta: http://127.0.0.1:8080
+  cluster: default
+
+server:
+  port: 8100
+spring:
+  profiles:
+    active: dev #默认为开发环境
+
+logging:
+  level:
+    root: info #日志配置DEBUG,INFO,WARN,ERROR
+    com.uzykj.fpsso: debug
+
+
+
+mybatis:
+  type-aliases-package: com.uzykj.fpadmin.mapper
+  mapper-locations: classpath:mapper/*.xml
+
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  secret: uzykj #JWT加解密使用的密钥
+  expiration: 604800 #JWT的超期限时间(60*60*24)
+  tokenHead: Bearer  #JWT负载中拿到开头
+
+md5:
+  secret: uzy_function_platform
+  version: uzykj_1_0_0
