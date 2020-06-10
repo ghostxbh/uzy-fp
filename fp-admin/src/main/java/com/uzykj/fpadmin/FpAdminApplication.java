@@ -17,7 +17,7 @@ public class FpAdminApplication implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         // 获取所有配置
         HashMap<String, String> apolloConfig = ApolloConfigProvider.getAllParams();
         System.out.println("Apollo Config: " + apolloConfig);
