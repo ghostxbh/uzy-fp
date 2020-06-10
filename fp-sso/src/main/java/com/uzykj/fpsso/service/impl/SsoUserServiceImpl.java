@@ -31,17 +31,11 @@ public class SsoUserServiceImpl implements SsoUserService {
     private String version;
 
     @Autowired
-    private StringRedisTemplate redisTemplate;
-    @Autowired
     private SsoUserMapper userMapper;
 
     @Override
     public boolean checkUser(String username) {
-        SsoUserExample example = new SsoUserExample();
-        example.createCriteria().andNameEqualTo(username);
-        RowBounds rowBounds = new RowBounds(0, 1);
-        List<SsoUser> ssoUsers = userMapper.selectByExampleWithRowbounds(example, rowBounds);
-        return ssoUsers.size() > 0;
+        return this.login(username) != null;
     }
 
     @Override

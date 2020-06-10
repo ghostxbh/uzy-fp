@@ -22,5 +22,5 @@ jwt:
   tokenHead: Bearer  #JWT负载中拿到开头
 
 md5:
-  secret: uzyfp
-  version: uzykj_1
+  secret: uzy_function_platform
+  version: uzykj_1_0_0

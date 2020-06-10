@@ -2,8 +2,10 @@ package com.uzykj.fpsso.controller;
 
 import com.uzykj.fpcommon.utils.crypto.Md5;
 import com.uzykj.fpcommon.utils.response.JsonResponse;
+import com.uzykj.fpcommon.utils.seria.JackJson;
 import com.uzykj.fpsso.enums.SsoEnum;
 import com.uzykj.fpsso.pojo.SsoUser;
+import com.uzykj.fpsso.service.RedisService;
 import com.uzykj.fpsso.service.SsoUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -12,6 +14,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,6 +38,8 @@ public class SsoUserController {
 
     @Autowired
     private SsoUserService userService;
+    @Autowired
+    private RedisService redisService;
 
     @PostMapping("/login")
     @ApiOperation("登录")
@@ -64,6 +71,9 @@ public class SsoUserController {
                 response.setCode(SsoEnum.SUCCESS.getCode())
                         .setMessage(SsoEnum.SUCCESS.getMsg())
                         .setData(ssoUser);
+                // 存入redis
+                String key = ssoUser.getId();
+                redisService.operations.set(key, Objects.requireNonNull(JackJson.objectToJson(ssoUser)), RedisService.DEFAULT_EXPIRE, TimeUnit.SECONDS);
             }
         } catch (Exception e) {
             log.log(Level.WARNING, "[sso] <login> error", e);
@@ -74,9 +84,24 @@ public class SsoUserController {
         return response;
     }
 
+    @GetMapping("/logOut/{userId}")
+    @ApiOperation("注销")
+    public JsonResponse logOut(@PathVariable String userId) {
+        JsonResponse response = new JsonResponse();
+        log.info("[sso] <logOut> user: " + userId);
+        try {
+            redisService.redisTemplate.delete(userId);
+            response.success(null);
+        } catch (Exception e) {
+            log.log(Level.WARNING, "[sso] <logOut> error", e);
+            return response.fail();
+        }
+        return response;
+    }
+
     @PostMapping("/register")
     @ApiOperation("注册")
-    public JsonResponse<SsoUser> register(@RequestBody SsoUser user) {
+    public JsonResponse<SsoUser> register(@NotNull @RequestBody SsoUser user) {
         log.info("[sso] <register> body: " + user.toString());
         JsonResponse<SsoUser> response = new JsonResponse<>();
         if (StringUtils.isEmpty(user.getName()) || StringUtils.isEmpty(user.getPassword())) {
