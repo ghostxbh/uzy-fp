@@ -3,7 +3,7 @@
 ## Framework
 
 ### Frame
-- SpringBoot    2.0.0.RELEASE
+- SpringBoot
 - Mybatis       
 - MybatisPlus
 - Mysql
@@ -30,6 +30,9 @@
         - [ ] youpaiyun
     - fp-sso
         - [x] sso
+    - fp-ocr
+        - [x] baidu
+        - [ ] tess4j
     - fp-basic
         - [ ] model
     - fp-common

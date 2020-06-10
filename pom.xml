@@ -9,11 +9,14 @@
     <packaging>pom</packaging>
 
     <modules>
+        <!-- 8000 - 8004 -->
+        <module>fp-admin</module>
         <module>fp-sso</module>
         <module>fp-ocr</module>
         <module>fp-sms</module>
         <module>fp-mail</module>
         <module>fp-file</module>
+
         <module>fp-basic</module>
         <module>fp-common</module>
     </modules>
