@@ -10,7 +10,7 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Md5 {
     public static String md5(String code) {
-        MessageDigest md = null;
+        MessageDigest md;
         try {
             md = MessageDigest.getInstance("MD5");
         } catch (NoSuchAlgorithmException e) {
