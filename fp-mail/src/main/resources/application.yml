@@ -1,0 +1,10 @@
+server:
+  port: 8002
+spring:
+  profiles:
+    active: dev #默认为开发环境
+
+logging:
+  level:
+    root: info #日志配置DEBUG,INFO,WARN,ERROR
+    com.uzykj.fpmail: debug

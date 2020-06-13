@@ -38,7 +38,7 @@ public class FileController {
     @PostMapping("/upload")
     @ResponseBody
     @ApiOperation("上传")
-    public String upload(@RequestParam MultipartFile file, @RequestParam String type) {
+    public String upload(@RequestParam MultipartFile file) {
         JSONObject jsonObject = new JSONObject();
         // 判断文件是否为空
         if (!file.isEmpty()) {
