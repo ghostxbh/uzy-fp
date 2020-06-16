@@ -4,7 +4,7 @@ app:
 apollo:
   bootstrap:
     enabled: true
-    namespaces: application
+    namespaces: application,fp.jwt,fp.crypto
   autoUpdateInjectedSpringProperties: false
   meta: http://127.0.0.1:8080
   cluster: default
@@ -25,13 +25,3 @@ logging:
 mybatis:
   type-aliases-package: com.uzykj.fpadmin.mapper
   mapper-locations: classpath:mapper/*.xml
-
-jwt:
-  tokenHeader: Authorization #JWT存储的请求头
-  secret: uzykj #JWT加解密使用的密钥
-  expiration: 604800 #JWT的超期限时间(60*60*24)
-  tokenHead: Bearer  #JWT负载中拿到开头
-
-md5:
-  secret: uzy_function_platform
-  version: uzykj_1_0_0
