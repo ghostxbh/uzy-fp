@@ -10,7 +10,7 @@ apollo:
   cluster: default
 
 server:
-  port: 8100
+  port: 8000
 spring:
   profiles:
     active: dev #默认为开发环境
@@ -22,6 +22,9 @@ logging:
 
 
 
-mybatis:
-  type-aliases-package: com.uzykj.fpadmin.mapper
+#mybatis:
+#  type-aliases-package: com.uzykj.fpadmin.mapper
+#  mapper-locations: classpath:mapper/*.xml
+
+mybtis-plus:
   mapper-locations: classpath:mapper/*.xml
