@@ -6,3 +6,5 @@
 - lombok
 - redis
 - jwt
+- druid
+- Mysql
