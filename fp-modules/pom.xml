@@ -9,10 +9,8 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>fp-modules</artifactId>
     <packaging>pom</packaging>
-
-    <name>fp-modules</name>
+    <artifactId>fp-modules</artifactId>
     <description>柚子云功能平台业务模块</description>
 
     <modules>
