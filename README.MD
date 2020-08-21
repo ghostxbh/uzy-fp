@@ -1,45 +1,20 @@
 # Uzy Inc. Functional Platform
 
+-------
+
+New sail！ New direction！
+
+-------
+
 ## Framework
+- SpringBoot                2.2.6.RELEASE
+- SpringBootAdmin           2.2.3
+- SpringCloud               Hoxton.SR4
+- SpringCloud               Alibaba 2.2.1.RELEASE
+- Nacos                     1.3.0
+- Mybatis                   2.1.2
+- MybatisPlus               3.3.1
+- Velocity                  1.7
 
-### Frame
-- SpringBoot
-- Mybatis       
-- MybatisPlus
-- Mysql
-
-### Tree
-- uzy-fp 
-    - fp-sms
-        - [ ] aliyun
-        - [ ] tencent
-        - [x] other
-    - fp-mail
-        - [ ] 126
-        - [ ] 163
-        - [ ] qq
-        - [ ] hotmail
-        - [ ] foxmail
-        - [ ] gmail
-        - [ ] sina
-    - fp-file
-        - [x] qiniu
-        - [ ] qingyun
-        - [ ] aliyun
-        - [ ] tencent
-        - [ ] youpaiyun
-    - fp-sso
-        - [x] sso
-    - fp-ocr
-        - [x] baidu
-        - [ ] tess4j
-    - fp-basic
-        - [ ] model
-    - fp-common
-        - [ ] common
-
-## Plan
-- Complete the architecture setting
-- Proposed project structure and function expansion 
 
 This is By &copy;2020 <a href="https://github.com/uzykj">uzykj</a> Team.
