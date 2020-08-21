@@ -1,4 +1,4 @@
-# Uzy Inc. Functional Platform
+# Grapefruit Cloud Functional Platform
 
 -------
 
@@ -10,7 +10,7 @@ New sail！ New direction！
 - SpringBoot                2.2.6.RELEASE
 - SpringBootAdmin           2.2.3
 - SpringCloud               Hoxton.SR4
-- SpringCloud               Alibaba 2.2.1.RELEASE
+- SpringCloud Alibaba       2.2.1.RELEASE
 - Nacos                     1.3.0
 - Mybatis                   2.1.2
 - MybatisPlus               3.3.1
