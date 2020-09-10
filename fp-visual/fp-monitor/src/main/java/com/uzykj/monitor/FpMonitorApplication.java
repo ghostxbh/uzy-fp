@@ -1,4 +1,4 @@
-package com.uzykj.modules.monitor;
+package com.uzykj.monitor;
 
 import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.springframework.boot.SpringApplication;

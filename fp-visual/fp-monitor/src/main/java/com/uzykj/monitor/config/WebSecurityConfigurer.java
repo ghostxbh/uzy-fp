@@ -1,4 +1,4 @@
-package com.uzykj.modules.monitor.config;
+package com.uzykj.monitor.config;
 
 import de.codecentric.boot.admin.server.config.AdminServerProperties;
 import org.springframework.context.annotation.Configuration;
