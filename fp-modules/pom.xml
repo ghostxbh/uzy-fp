@@ -14,7 +14,6 @@
     <description>柚子云功能平台业务模块</description>
 
     <modules>
-        <module>fp-admin</module>
         <module>fp-mail</module>
         <module>fp-notice</module>
         <module>fp-ocr</module>
