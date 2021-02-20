@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>com.uzykj</groupId>
-		<artifactId>uzyfp</artifactId>
-		<version>1.0.0</version>
-	</parent>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.uzykj</groupId>
+        <artifactId>uzy-fp</artifactId>
+        <version>1.0.0</version>
+    </parent>
 
-	<packaging>pom</packaging>
-	<artifactId>fp-common</artifactId>
-	<description>柚子云功能平台通用业务模块</description>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>fp-common</artifactId>
+    <packaging>pom</packaging>
 
-	<modules>
-		<module>fp-common-core</module>
-		<module>fp-common-file</module>
-	</modules>
+    <name>FP通用模块</name>
+    <description>
+        uzy fp common module
+    </description>
 
+    <modules>
+        <module>fp-common-core</module>
+        <module>fp-common-redis</module>
+        <module>fp-common-log</module>
+    </modules>
 </project>
