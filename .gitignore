@@ -2,7 +2,6 @@
 # system ignore
 .DS_Store
 .idea
-log
 logs
 
 # maven ignore
@@ -25,7 +24,6 @@ target/
 *.iws
 
 # temp ignore
-*.log
 *.cache
 *.diff
 *.patch
