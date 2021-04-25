@@ -1,0 +1,31 @@
+server:
+  port: 9100
+  servlet:
+    context-path: /notice
+nature:
+  restApi:
+    enabled: true
+
+spring:
+  freemarker:
+    check-template-location: false
+  profiles:
+    active: dev
+  jackson:
+    time-zone: GMT+8
+  application:
+    name: notice
+    version: 1.0.0
+    description: springboot notice server
+
+  data:
+    mongodb:
+      database: notice
+      uri: mongodb://root:zxcASDqwe@34.92.138.182:27017
+      authentication-database: admin
+
+  resources:
+    static-locations: classpath:/static/,classpath:/templates/
+
+  mvc:
+    static-path-pattern: /**
