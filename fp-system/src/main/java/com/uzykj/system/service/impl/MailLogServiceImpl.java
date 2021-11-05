@@ -7,6 +7,7 @@ import com.uzykj.system.mapper.MailLogMapper;
 import com.uzykj.system.service.MailLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -25,6 +26,7 @@ public class MailLogServiceImpl implements MailLogService {
     @Autowired
     private MailLogMapper mailLogMapper;
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int addLog(MailLog mailLog) {
         mailLog.setCreateTime(new Date());
@@ -32,6 +34,7 @@ public class MailLogServiceImpl implements MailLogService {
         return mailLogMapper.insert(mailLog);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int updateStatus(Integer id, Integer status) {
         MailLog build = MailLog.builder()
@@ -42,6 +45,7 @@ public class MailLogServiceImpl implements MailLogService {
         return mailLogMapper.updateById(build);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int deleteLogByIds(Integer[] ids) {
         return mailLogMapper.deleteBatchIds(Arrays.asList(ids));

@@ -11,13 +11,13 @@ import lombok.Getter;
  * @Version 1.0
  */
 @Getter
-public enum MaillEnable {
+public enum MailEnable {
     DISABLE(0),
     ENABLE(1);
 
     private final Integer code;
 
-    MaillEnable(Integer code) {
+    MailEnable(Integer code) {
         this.code = code;
     }
 }

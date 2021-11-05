@@ -3,11 +3,12 @@ package com.uzykj.system.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.uzykj.system.constant.fields.MailBacthLogFields;
 import com.uzykj.system.domain.MailBatchLog;
-import com.uzykj.system.enums.MaillSendStatus;
+import com.uzykj.system.enums.MailSendStatus;
 import com.uzykj.system.mapper.MailBatchLogMapper;
 import com.uzykj.system.service.MailBatchLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -26,6 +27,7 @@ public class MailBatchLogServiceImpl implements MailBatchLogService {
     @Autowired
     private MailBatchLogMapper mailBatchLogMapper;
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int addBatchLog(MailBatchLog mailBatchLog) {
         mailBatchLog.setCreateTime(new Date());
@@ -33,6 +35,7 @@ public class MailBatchLogServiceImpl implements MailBatchLogService {
         return mailBatchLogMapper.insert(mailBatchLog);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int updateStatus(Integer id, Integer status) {
         MailBatchLog build = MailBatchLog.builder()
@@ -43,6 +46,7 @@ public class MailBatchLogServiceImpl implements MailBatchLogService {
         return mailBatchLogMapper.updateById(build);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int deleteLogByIds(Integer[] ids) {
         return mailBatchLogMapper.deleteBatchIds(Arrays.asList(ids));
@@ -60,7 +64,7 @@ public class MailBatchLogServiceImpl implements MailBatchLogService {
 
     @Override
     public List<MailBatchLog> tobeList() {
-        return mailBatchLogMapper.selectList(new QueryWrapper<MailBatchLog>().eq(MailBacthLogFields.STATUS, MaillSendStatus.TOBE.getCode()));
+        return mailBatchLogMapper.selectList(new QueryWrapper<MailBatchLog>().eq(MailBacthLogFields.STATUS, MailSendStatus.TOBE.getCode()));
     }
 
     @Override

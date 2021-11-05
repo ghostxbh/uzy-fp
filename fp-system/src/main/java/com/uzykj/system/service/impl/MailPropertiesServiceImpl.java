@@ -3,11 +3,12 @@ package com.uzykj.system.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.uzykj.system.constant.fields.MailPropertiesFields;
 import com.uzykj.system.domain.MailProperties;
-import com.uzykj.system.enums.MaillEnable;
+import com.uzykj.system.enums.MailEnable;
 import com.uzykj.system.mapper.MailPropertiesMapper;
 import com.uzykj.system.service.MailPropertiesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -26,20 +27,23 @@ public class MailPropertiesServiceImpl implements MailPropertiesService {
     @Autowired
     private MailPropertiesMapper mailPropertiesMapper;
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int addProperties(MailProperties mailProperties) {
-        mailProperties.setIsEnable(MaillEnable.ENABLE.getCode());
+        mailProperties.setIsEnable(MailEnable.ENABLE.getCode());
         mailProperties.setCreateTime(new Date());
         mailProperties.setUpdateTime(new Date());
         return mailPropertiesMapper.insert(mailProperties);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int updateProperties(MailProperties mailProperties) {
         mailProperties.setUpdateTime(new Date());
         return mailPropertiesMapper.updateById(mailProperties);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int deletePropertiesByIds(Integer[] ids) {
         return mailPropertiesMapper.deleteBatchIds(Arrays.asList(ids));
