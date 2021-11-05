@@ -76,6 +76,10 @@ public class MailBatchLog {
      */
     private Integer companyId;
     /**
+     * 配置ID
+     */
+    private Integer propertiesId;
+    /**
      * 发送时间（定时发送）
      */
     private Date sendTime;

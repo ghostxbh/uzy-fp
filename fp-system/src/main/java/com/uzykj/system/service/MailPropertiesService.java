@@ -46,6 +46,14 @@ public interface MailPropertiesService {
     public MailProperties selectOne(Integer id);
 
     /**
+     * key查重
+     *
+     * @param key
+     * @return
+     */
+    public MailProperties selectOneByKey(String key);
+
+    /**
      * 获取用户下的配置
      *
      * @param userId
