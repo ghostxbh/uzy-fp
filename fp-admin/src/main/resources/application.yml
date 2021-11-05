@@ -1,0 +1,127 @@
+server:
+  port: 9500
+  servlet:
+    context-path: /
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 800
+    min-spare-threads: 30
+
+logging:
+  level:
+    com.ruoyi: debug
+    org.springframework: warn
+
+spring:
+  servlet:
+    multipart:
+      max-file-size:  10MB
+      max-request-size:  20MB
+  datasource:
+    druid:
+      db-type: com.alibaba.druid.pool.DruidDataSource
+      driverClassName: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/uzy_fp?useUnicode=true&characterEncoding=utf-8&userSSL=false&serverTimezone=GMT%2B8
+      username: root
+      password: 123456
+      # 初始连接数
+      initialSize: 5
+      # 最小连接池数量
+      minIdle: 10
+      # 最大连接池数量
+      maxActive: 20
+      # 配置获取连接等待超时的时间
+      maxWait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      timeBetweenEvictionRunsMillis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      minEvictableIdleTimeMillis: 300000
+      # 配置一个连接在池中最大生存的时间，单位是毫秒
+      maxEvictableIdleTimeMillis: 900000
+      # 配置检测连接是否有效
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      webStatFilter:
+        enabled: true
+      statViewServlet:
+        enabled: true
+        # 设置白名单，不填则允许所有访问
+        allow:
+        url-pattern: /druid/*
+        # 控制台管理用户名和密码
+        login-username: ruoyi
+        login-password: 123456
+      filter:
+        stat:
+          enabled: true
+          # 慢SQL记录
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
+  devtools:
+    restart:
+      enabled: true
+
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+    password:
+    timeout: 10s
+    lettuce:
+      pool:
+        min-idle: 0
+        max-idle: 8
+        max-active: 8
+        max-wait: -1ms
+
+token:
+  header: Authorization
+  secret: abcdefghijklmnopqrstuvwxyz
+  expireTime: 30
+
+mybatis:
+  typeAliasesPackage: com.uzykj.**.domain
+  mapperLocations: classpath*:mapper/**/*Mapper.xml
+  configLocation: classpath:mybatis/mybatis-config.xml
+
+pagehelper:
+  helperDialect: mysql
+  supportMethodsArguments: true
+  params: count=countSql
+
+swagger:
+  enabled: true
+  pathMapping: /restApi
+
+uzyfp:
+  name: uzy-fp
+  email: ghostxbh@163.com
+  url: http://fp.uzykj.com
+  version: 1.0.0
+  copyright: 2021
+
+# 配置邮件
+mail:
+  configs:
+    # 账号1
+    - key: default
+      username: test@QQ.com
+      password: 123456
+      host: smtp.qq.com
+      port: 25
+      protocol: smtp
+      default-encoding: UTF-8
+    # 账号2
+    - key: qq
+      username: test2@QQ.com
+      password: 123456
+      host: smtp.qq.com
+      port: 25
+      protocol: smtp
+      default-encoding: UTF-8
