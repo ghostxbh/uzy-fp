@@ -21,13 +21,11 @@
 
     <properties>
         <fp.version>1.0.0</fp.version>
-        <java.version>1.8</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
+        <lombok.version>1.18.6</lombok.version>
         <druid.version>1.2.8</druid.version>
         <mybatis-spring-boot.version>2.2.0</mybatis-spring-boot.version>
         <mybatis-plus.version>3.3.1</mybatis-plus.version>
+        <pagehelper.boot.version>1.4.0</pagehelper.boot.version>
 
         <kaptcha.version>2.3.2</kaptcha.version>
         <bitwalker.version>1.21</bitwalker.version>
@@ -45,21 +43,20 @@
         <commons.collections.version>3.2.2</commons.collections.version>
     </properties>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.6.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
     <dependencyManagement>
         <dependencies>
-            <!-- SpringBoot的依赖配置-->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.1.6.RELEASE</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <scope>compile</scope>
+                <version>${lombok.version}</version>
+                <optional>true</optional>
             </dependency>
 
             <!-- SpringBoot集成mybatis框架 -->
@@ -191,23 +188,14 @@
                 <artifactId>fp-common</artifactId>
                 <version>${fp.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.uzykj</groupId>
+                <artifactId>fp-system</artifactId>
+                <version>${fp.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
     <repositories>
         <repository>
