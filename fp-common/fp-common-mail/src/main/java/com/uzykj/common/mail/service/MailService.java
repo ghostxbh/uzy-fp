@@ -1,0 +1,42 @@
+package com.uzykj.common.mail.service;
+
+import com.uzykj.common.mail.domain.MailSender;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Component;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+
+import javax.annotation.Resource;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
+@Slf4j
+@Component
+public class MailService {
+    @Resource
+    private JavaMailSender javaMailSender;
+    @Resource
+    private TemplateEngine templateEngine;
+
+    public void sendMail(MailSender mailSender) throws MessagingException {
+        MimeMessage message = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+        helper.setFrom(mailSender.getFromAddress());
+        helper.setTo(mailSender.getToAddress());
+        helper.setSubject(mailSender.getSubject());
+
+        Context context = new Context();
+        context.setVariable("context", mailSender);
+
+        String emailContent = templateEngine.process("template", context);
+        helper.setText(emailContent, true);
+        try {
+            // 发送
+            javaMailSender.send(message);
+        } catch (Exception e) {
+            log.error("send mail error", e);
+        }
+    }
+}

@@ -11,7 +11,7 @@
     <artifactId>fp-common</artifactId>
     <packaging>pom</packaging>
 
-    <name>FP通用模块</name>
+    <name>通用模块</name>
     <description>
         uzy fp common module
     </description>
@@ -19,6 +19,29 @@
     <modules>
         <module>fp-common-core</module>
         <module>fp-common-redis</module>
-        <module>fp-common-log</module>
+        <module>fp-common-mail</module>
+        <module>fp-common-notice</module>
     </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.uzykj</groupId>
+            <artifactId>fp-system</artifactId>
+        </dependency>
+    </dependencies>
 </project>

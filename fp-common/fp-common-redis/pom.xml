@@ -10,8 +10,9 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>fp-common-redis</artifactId>
     <version>1.0.0</version>
+    <packaging>jar</packaging>
 
-    <name>FP通用缓存</name>
+    <name>缓存模块</name>
     <description>uzy fp common redis module</description>
 
     <dependencies>
