@@ -19,6 +19,14 @@ public class MailSender {
      */
     private String toAddress;
     /**
+     * 抄送地址
+     */
+    private String[] ccAddress;
+    /**
+     * 密抄送地址
+     */
+    private String[] bccAddress;
+    /**
      * 标题
      */
     private String subject;
@@ -30,10 +38,7 @@ public class MailSender {
      * 附件
      */
     private Map<String, String> files;
-    /**
-     * 抄送地址
-     */
-    private String ccAddress;
+
     /**
      * 发件类型
      * 1、批量

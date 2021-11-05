@@ -26,17 +26,18 @@ public class MailService {
         helper.setFrom(mailSender.getFromAddress());
         helper.setTo(mailSender.getToAddress());
         helper.setSubject(mailSender.getSubject());
+        if (mailSender.getCcAddress() != null) {
+            helper.setCc(mailSender.getCcAddress());
+        }
+        if (mailSender.getBccAddress() != null) {
+            helper.setBcc(mailSender.getBccAddress());
+        }
 
         Context context = new Context();
         context.setVariable("context", mailSender);
 
         String emailContent = templateEngine.process("template", context);
         helper.setText(emailContent, true);
-        try {
-            // 发送
-            javaMailSender.send(message);
-        } catch (Exception e) {
-            log.error("send mail error", e);
-        }
+        javaMailSender.send(message);
     }
 }
