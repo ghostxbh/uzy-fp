@@ -1,6 +1,6 @@
 package com.uzykj.common.mail.domain;
 
-import lombok.*;
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
