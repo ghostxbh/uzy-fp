@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8"/>
     <link rel="shortcut icon" type="image/x-icon" href="http://file.uzykj.com/favicon.ico"/>
-    <title>您有新的邮件！</title>
+    <title>您有新的邮件！ | 柚子云</title>
     <style>
         body {
+            margin: 0 auto;
+            ackground-color: #f8f8f8;
             background-image: url("http://file.uzykj.com/mail_backgroud_pic.png");
             background-repeat: no-repeat;
-            background-size: 100%;
+            background-size: cover;
         }
 
         .qmbox a, .qmbox a:link, .qmbox a:visited, .qmbox a:active {
@@ -63,7 +65,7 @@
                                    style="border-collapse:collapse;border-spacing:0;width:742px;">
                                 <tbody>
                                 <tr>
-                                    <td class="left-gutter" style="width:40px;"></td>
+                                    <td class="left-gutter" style="width: 15%;"></td>
                                     <td>
                                         <img width="42" height="42"
                                              src="http://file.uzykj.com/favicon.ico"
@@ -86,56 +88,24 @@
                                             <tbody>
                                             <tr>
                                                 <td>
-                                                    <table class="aapl-desktop-tbl"
-                                                           style="border: 1px solid white;border-radius:3px;font-size:12px;
-                                                           font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
-                                                        <tbody>
-                                                        <tr height="46">
-                                                            <td width="320" colspan="2"
-                                                                style="padding-left:20px;border-style: solid;border-color: white;
-                                                                border-left-width:0;border-right-width:1px;border-bottom-width: 1px;
-                                                                border-top-width: 0px;">
-                                                                <span style="color:rgb(102,102,102);font-size:10px;">
-                                                                    发件人:
-                                                                </span>
-                                                                <br>
-                                                            </td>
-                                                            <td width="320" colspan="2"
-                                                                style="padding-left:20px;border-style: solid;border-color: white;
-                                                                border-left-width:0;border-right-width:1px;border-bottom-width: 1px;
-                                                                border-top-width: 0px;">
-                                                                <a th:href="@{'mailto:'context.fromAddress}"
-                                                                   rel="noopener" target="_blank"></a>
-                                                            </td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </td>
-                                            </tr>
-
-                                            <tr height="30">
-                                                <td></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                    <table class="aapl-desktop-tbl" border="0" bordercolor="#ffffff"
-                                                           cellpadding="0" cellspacing="0"
+                                                    <table class="aapl-desktop-tbl" align="center"
+                                                           border="0" bordercolor="#ffffff" cellpadding="0"
+                                                           cellspacing="0"
                                                            style="border-collapse:collapse;border-spacing:0;color:rgb(51,51,51);background-color: rgb(250,250,250);border-radius:3px;font-size:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
                                                         <tbody>
-                                                        <tr height="46">
-                                                            <td width="640" colspan="2"
+                                                        <tr height="50">
+                                                            <td width="500" colspan="2"
                                                                 style="padding-left:20px;border-style: solid;border-color: white;
                                                                 border-left-width:0;border-right-width:1px;border-bottom-width: 1px;
                                                                 border-top-width: 0px;">
                                                                 <span style="color:rgb(102,102,102);font-size:10px;">
                                                                     内容:
                                                                 </span>
-                                                                <hr width="620">
+                                                                <hr width="450">
                                                             </td>
                                                         </tr>
-                                                        <tr height="46">
-                                                            <td width="640" colspan="2">
+                                                        <tr height="100">
+                                                            <td width="500" colspan="2">
                                                                 <pre style="font-size:10px;margin: 1% 1%;"
                                                                      th:text="${context.content}">
                                                                 </pre>
@@ -147,37 +117,35 @@
                                                 </td>
                                             </tr>
 
-                                            <tr height="30">
+                                            <tr height="100">
                                                 <td></td>
                                             </tr>
 
                                             <tr>
                                                 <td>
-                                                    <table class="aapl-desktop-tbl"
+                                                    <table class="aapl-desktop-tbl" align="center"
                                                            style="border-collapse:collapse;border-spacing:0;color:rgb(51,51,51);
-                                                           background-color: rgb(250,250,250);border-radius:3px;font-size:12px;
+                                                           background-color: rgb(184,208,243);border-radius:3px;font-size:12px;
                                                            font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
                                                         <tbody>
-                                                        <tr height="46">
-                                                            <td width="640" colspan="2"
-                                                                style="padding-left:20px;border-style: solid;border-color: white;
+                                                        <tr height="30">
+                                                            <td width="250" colspan="2"
+                                                                style="padding-left:20px;border-style: solid;border-color: rgb(184,208,243);
                                                                 border-left-width:0;border-right-width:1px;border-bottom-width: 1px;
                                                                 border-top-width: 0px;">
                                                                 <span style="color:rgb(102,102,102);font-size:10px;">
                                                                     附件:
                                                                 </span>
-                                                                <hr width="620">
+                                                                <hr width="200">
                                                             </td>
                                                         </tr>
                                                         <tr height="30" th:each="item:${context.files}">
-                                                            <td width="320" style="padding-left: 3%;"
-                                                                th:text="${item.getKey()}">
-                                                            </td>
-                                                            <td width="320" style="padding-left: 3%;"
-                                                                th:text="${item.getValue()}">
+                                                            <td>
+                                                                <a th:href="${item.value}" th:text="${item.key}"
+                                                                   target="_blank"></a>
                                                             </td>
                                                         </tr>
-                                                        <br>
+                                                        <br><br>
                                                         </tbody>
                                                     </table>
                                                 </td>
@@ -204,7 +172,7 @@
                                     <td></td>
                                     <td colspan="2" align="center" dir="auto"
                                         style="font-size:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:rgb(102,102,102)">
-                                        Copyright © 2021 uzykj.com FP
+                                        Copyright © 2020-2021 uzy-fp
                                         <br>
                                     </td>
                                     <td></td>
