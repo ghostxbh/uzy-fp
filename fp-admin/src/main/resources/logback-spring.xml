@@ -21,7 +21,7 @@
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>100MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
-            <maxHistory>100</maxHistory>
+            <maxHistory>5</maxHistory>
         </rollingPolicy>
         <encoder>
             <pattern>${LOG_PATTERN}</pattern>
@@ -41,9 +41,12 @@
         <!-- 循环政策：基于时间创建日志文件 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 日志文件名格式 -->
-            <fileNamePattern>${LOG_HOME}/app_error.log.%d{yyyyMMdd}</fileNamePattern>
-            <!-- 日志最大的历史 60天 -->
-            <maxHistory>60</maxHistory>
+            <fileNamePattern>${LOG_HOME}/app_error.log.%i-%d{yyyyMMdd}</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- 日志最大的历史 6天 -->
+            <maxHistory>5</maxHistory>
         </rollingPolicy>
         <encoder>
             <pattern>${LOG_PATTERN}</pattern>
@@ -59,33 +62,31 @@
     </appender>
 
     <!-- 用户访问日志输出  -->
-    <appender name="SYS-USER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="SYS_USER" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_HOME}/sys_user.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 按天回滚 daily -->
-            <fileNamePattern>${LOG_HOME}/sys_user.%d{yyyy-MM-dd}.log</fileNamePattern>
-            <!-- 日志最大的历史 60天 -->
-            <maxHistory>60</maxHistory>
+            <fileNamePattern>${LOG_HOME}/sys_user.%i-%d{yyyyMMdd}.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- 日志最大的历史 5天 -->
+            <maxHistory>5</maxHistory>
         </rollingPolicy>
         <encoder>
             <pattern>${LOG_PATTERN}</pattern>
         </encoder>
     </appender>
 
-
     <!-- 日志输出级别 -->
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
-    </root>
-
-    <!--系统操作日志-->
-    <root level="INFO">
         <appender-ref ref="FILE"/>
         <appender-ref ref="FILE_ERROR"/>
     </root>
 
     <!--系统用户操作日志-->
-    <logger name="SYS-USER" level="INFO">
-        <appender-ref ref="SYS-USER"/>
+    <logger name="SYS_USER" level="INFO">
+        <appender-ref ref="SYS_USER"/>
     </logger>
 </configuration>

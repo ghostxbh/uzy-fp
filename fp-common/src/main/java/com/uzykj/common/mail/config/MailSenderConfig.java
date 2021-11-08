@@ -6,6 +6,7 @@ import com.uzykj.system.service.MailPropertiesService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -28,18 +29,18 @@ public class MailSenderConfig {
     /**
      * 初始化 sender
      */
-    @PostConstruct
+    @Bean
     public void buildMailSender() {
-        List<MailProperties> mailProperties = mailPropertiesService.selectByBusiness(3);
         List<MailConfiguration.MailProperties> mailConfigs = mailConfiguration.getConfigs();
+        List<MailProperties> mailProperties = mailPropertiesService.selectByBusiness(3);
 
         mailConfigs.forEach(config -> {
             MailProperties build = MailProperties.builder()
-                    .key(config.getKey())
-                    .host(config.getHost())
-                    .port(String.valueOf(config.getPort()))
-                    .username(config.getUsername())
-                    .password(config.getPassword())
+                    .mailKey(config.getKey())
+                    .mailHost(config.getHost())
+                    .mailPort(String.valueOf(config.getPort()))
+                    .mailUser(config.getUsername())
+                    .mailPwd(config.getPassword())
                     .protocol(config.getProtocol())
                     .defaultEncoding(config.getDefaultEncoding())
                     .build();
@@ -50,13 +51,13 @@ public class MailSenderConfig {
             // 邮件发送者
             JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
             javaMailSender.setDefaultEncoding(propertie.getDefaultEncoding());
-            javaMailSender.setHost(propertie.getHost());
-            javaMailSender.setPort(Integer.parseInt(propertie.getPort()));
+            javaMailSender.setHost(propertie.getMailHost());
+            javaMailSender.setPort(Integer.parseInt(propertie.getMailPort()));
             javaMailSender.setProtocol(propertie.getProtocol());
-            javaMailSender.setUsername(propertie.getUsername());
-            javaMailSender.setPassword(propertie.getPassword());
+            javaMailSender.setUsername(propertie.getMailUser());
+            javaMailSender.setPassword(propertie.getMailPwd());
             // 添加数据
-            senderMap.put(propertie.getKey(), javaMailSender);
+            senderMap.put(propertie.getMailKey(), javaMailSender);
         });
 
         log.info("初始化mailSender, 成功加载 " + mailProperties.size() + " 条配置");

@@ -1,12 +1,15 @@
 package com.uzykj.common.mail.service;
 
+import com.uzykj.common.mail.config.MailSenderConfig;
 import com.uzykj.common.mail.domain.MailSender;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
@@ -16,12 +19,11 @@ import javax.mail.internet.MimeMessage;
 @Component
 public class MailService {
     @Resource
-    private JavaMailSender javaMailSender;
-    @Resource
-    private TemplateEngine templateEngine;
+    private MailSenderConfig mailSenderConfig;
 
     public void sendMail(MailSender mailSender) throws MessagingException {
-        MimeMessage message = javaMailSender.createMimeMessage();
+        JavaMailSenderImpl mailSenderConfigSender = mailSenderConfig.getSender(mailSender.getMailKey());
+        MimeMessage message = mailSenderConfigSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
         helper.setFrom(mailSender.getFromAddress());
         helper.setTo(mailSender.getToAddress());
@@ -36,8 +38,18 @@ public class MailService {
         Context context = new Context();
         context.setVariable("context", mailSender);
 
-        String emailContent = templateEngine.process("template", context);
+        String emailContent = this.getTemplateEngine().process("template", context);
         helper.setText(emailContent, true);
-        javaMailSender.send(message);
+        mailSenderConfigSender.send(message);
+    }
+
+    private TemplateEngine getTemplateEngine() {
+        final ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+        templateResolver.setTemplateMode("HTML");
+        templateResolver.setPrefix("/templates/");
+        templateResolver.setSuffix(".html");
+        final TemplateEngine tplEngine = new TemplateEngine();
+        tplEngine.setTemplateResolver(templateResolver);
+        return tplEngine;
     }
 }

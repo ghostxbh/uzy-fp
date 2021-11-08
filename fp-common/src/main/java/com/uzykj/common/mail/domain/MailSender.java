@@ -13,6 +13,7 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MailSender {
+    private String mailKey;
     /**
      * 发件地址
      */

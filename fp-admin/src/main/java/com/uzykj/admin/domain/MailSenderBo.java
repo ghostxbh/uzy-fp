@@ -17,8 +17,9 @@ import java.util.Map;
  * @Version 1.0
  */
 public class MailSenderBo extends MailSender {
-    public static MailSender toSender(MailBatchLog mailBatchLog, String fromAddress, String toAddress) {
+    public static MailSender toSender(MailBatchLog mailBatchLog, String mailKey, String fromAddress, String toAddress) {
         return MailSender.builder()
+                .mailKey(mailKey)
                 .batchId(mailBatchLog.getId())
                 .userId(mailBatchLog.getUserId())
                 .companyId(mailBatchLog.getCompanyId())
@@ -34,11 +35,15 @@ public class MailSenderBo extends MailSender {
 
     public static Map<String, String> transferFiles(String files) {
         HashMap<String, String> fileMap = Maps.newHashMap();
-        Arrays.stream(files.split(";"))
-                .peek(file -> {
-                    String[] fileSplit = file.split("@");
-                    fileMap.put(fileSplit[0], fileSplit[1]);
-                });
+        if (files.contains(";")) {
+            for (String file : files.split(";")) {
+                String[] fileSplit = file.split("@");
+                fileMap.put(fileSplit[0], fileSplit[1]);
+            }
+        } else {
+            String[] fileSplit = files.split("@");
+            fileMap.put(fileSplit[0], fileSplit[1]);
+        }
         return fileMap;
     }
 }

@@ -42,23 +42,23 @@ public class MailProperties {
     /**
      * 标识key
      */
-    private String key;
+    private String mailKey;
     /**
      * host
      */
-    private String host;
+    private String mailHost;
     /**
      * 端口
      */
-    private String port;
+    private String mailPort;
     /**
      * 用户名
      */
-    private String username;
+    private String mailUser;
     /**
      * 密码
      */
-    private String password;
+    private String mailPwd;
     /**
      * 协议
      */
