@@ -13,8 +13,8 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  * @Date 2021/11/5
  * @Version 1.0
  */
+@MapperScan("com.uzykj.**.mapper")
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class}, scanBasePackages = "com.uzykj.**")
-@MapperScan("com.uzykj.**")
 public class FpAdminApplication {
     public static void main(String[] args) {
         SpringApplication.run(FpAdminApplication.class, args);

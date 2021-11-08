@@ -15,8 +15,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.uzykj</groupId>
-            <artifactId>fp-common</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
 
         <dependency>
