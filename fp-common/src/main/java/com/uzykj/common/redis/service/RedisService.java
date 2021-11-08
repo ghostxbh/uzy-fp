@@ -19,7 +19,6 @@ import java.util.concurrent.TimeUnit;
  * @author uzy-fp
  **/
 @SuppressWarnings(value = {"all"})
-@Component
 public class RedisService {
     @Autowired
     public RedisTemplate redisTemplate;

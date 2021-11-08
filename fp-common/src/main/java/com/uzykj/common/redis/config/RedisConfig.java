@@ -29,12 +29,12 @@ import java.util.Map;
  * @author uzy-fp
  */
 @Slf4j
-@Configuration
-@EnableCaching
+//@Configuration
+//@EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
 
     @SuppressWarnings("all")
-    @Bean(name = "redisTemplate")
+//    @Bean(name = "redisTemplate")
     @ConditionalOnMissingBean(name = "redisTemplate")
     public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplate<Object, Object> template = new RedisTemplate<>();
@@ -58,7 +58,7 @@ public class RedisConfig extends CachingConfigurerSupport {
      * 设置 redis 数据默认过期时间，默认2小时
      * 设置@cacheable 序列化方式
      */
-    @Bean
+//    @Bean
     public RedisCacheConfiguration redisCacheConfiguration() {
         FastJsonRedisSerializer<Object> fastJsonRedisSerializer = new FastJsonRedisSerializer<>(Object.class);
 
@@ -76,7 +76,7 @@ public class RedisConfig extends CachingConfigurerSupport {
     /**
      * 自定义缓存key生成策略，默认将使用该策略
      */
-    @Bean
+//    @Bean
     @Override
     public KeyGenerator keyGenerator() {
         return (target, method, params) -> {
@@ -99,7 +99,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         };
     }
 
-    @Bean
+//    @Bean
     @Override
     public CacheErrorHandler errorHandler() {
         // 异常处理，当Redis发生异常时，打印日志，但是程序正常走
