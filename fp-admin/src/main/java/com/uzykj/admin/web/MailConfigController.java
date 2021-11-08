@@ -29,15 +29,15 @@ public class MailConfigController {
     public R addMailConfig(@RequestBody MailProperties mailProperties) {
         try {
             if (ObjectUtils.isEmpty(mailProperties.getUserId())
-                    || ObjectUtils.isEmpty(mailProperties.getHost())
-                    || ObjectUtils.isEmpty(mailProperties.getUsername())
-                    || ObjectUtils.isEmpty(mailProperties.getPassword())) {
+                    || ObjectUtils.isEmpty(mailProperties.getMailHost())
+                    || ObjectUtils.isEmpty(mailProperties.getMailUser())
+                    || ObjectUtils.isEmpty(mailProperties.getMailPwd())) {
                 return R.failed("缺少必填参数");
             }
 
-            MailProperties properties = mailPropertiesService.selectOneByKey(mailProperties.getKey());
+            MailProperties properties = mailPropertiesService.selectOneByKey(mailProperties.getMailKey());
             if (properties != null) {
-                return R.failed("配置" + mailProperties.getKey() + "已存在");
+                return R.failed("配置" + mailProperties.getMailKey() + "已存在");
             }
 
             mailPropertiesService.addProperties(mailProperties);

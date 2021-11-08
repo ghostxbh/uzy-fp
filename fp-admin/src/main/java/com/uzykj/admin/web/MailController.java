@@ -37,8 +37,7 @@ public class MailController {
                 return R.failed("缺少必填参数");
             }
 
-            String[] receiveSplit = mailBatchLog.getReceiveAddress().split(";");
-            int sendType = receiveSplit.length > 1 ? MailSendType.BATCH.getCode() : MailSendType.SINGLE.getCode();
+            int sendType = mailBatchLog.getReceiveAddress().contains(";") ? MailSendType.BATCH.getCode() : MailSendType.SINGLE.getCode();
             mailBatchLog.setSendType(sendType);
             mailBatchLog.setStatus(MailSendStatus.TOBE.getCode());
 
