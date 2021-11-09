@@ -1,5 +1,6 @@
 package com.uzykj.admin.web;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.uzykj.admin.service.MailSenderService;
 import com.uzykj.system.domain.MailBatchLog;
@@ -8,10 +9,7 @@ import com.uzykj.system.enums.MailSendType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Copyright http://fp.uzykj.com
@@ -29,8 +27,10 @@ public class MailController {
     private MailSenderService mailSenderService;
 
     @PostMapping("/send")
-    public R sender(@RequestBody MailBatchLog mailBatchLog) {
+    public R sender(@RequestParam String mailBatch) {
+        log.info("sender param: " + mailBatch);
         try {
+            MailBatchLog mailBatchLog = JSONObject.parseObject(mailBatch, MailBatchLog.class);
             if (ObjectUtils.isEmpty(mailBatchLog.getUserId())
                     || ObjectUtils.isEmpty(mailBatchLog.getPropertiesId())
                     || ObjectUtils.isEmpty(mailBatchLog.getReceiveAddress())) {
