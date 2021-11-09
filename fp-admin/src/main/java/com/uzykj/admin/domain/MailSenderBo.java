@@ -3,6 +3,7 @@ package com.uzykj.admin.domain;
 import com.google.common.collect.Maps;
 import com.uzykj.common.mail.domain.MailSender;
 import com.uzykj.system.domain.MailBatchLog;
+import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -35,6 +36,9 @@ public class MailSenderBo extends MailSender {
 
     public static Map<String, String> transferFiles(String files) {
         HashMap<String, String> fileMap = Maps.newHashMap();
+        if (StringUtils.isEmpty(files)) {
+            return fileMap;
+        }
         if (files.contains(";")) {
             for (String file : files.split(";")) {
                 String[] fileSplit = file.split("@");
