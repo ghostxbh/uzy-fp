@@ -27,10 +27,9 @@ public class MailController {
     private MailSenderService mailSenderService;
 
     @PostMapping("/send")
-    public R sender(@RequestParam String mailBatch) {
-        log.info("sender param: " + mailBatch);
+    public R sender(@RequestParam MailBatchLog mailBatchLog) {
+        log.info("sender param: " + mailBatchLog.toString());
         try {
-            MailBatchLog mailBatchLog = JSONObject.parseObject(mailBatch, MailBatchLog.class);
             if (ObjectUtils.isEmpty(mailBatchLog.getUserId())
                     || ObjectUtils.isEmpty(mailBatchLog.getPropertiesId())
                     || ObjectUtils.isEmpty(mailBatchLog.getReceiveAddress())) {
