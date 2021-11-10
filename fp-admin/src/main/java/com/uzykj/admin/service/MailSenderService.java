@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
+import java.util.Date;
 
 /**
  * @Copyright http://fp.uzykj.com
@@ -37,6 +38,7 @@ public class MailSenderService {
 
     public void realSender(MailBatchLog mailBatchLog) {
         MailProperties mailProperties = mailPropertiesService.selectOne(mailBatchLog.getPropertiesId());
+        mailBatchLog.setSendTime(new Date());
         mailBatchLogService.addBatchLog(mailBatchLog);
         int batchId = mailBatchLog.getId();
         String receiveAddress = mailBatchLog.getReceiveAddress();
