@@ -5,7 +5,6 @@ import com.uzykj.common.mail.domain.MailSender;
 import com.uzykj.system.domain.MailBatchLog;
 import org.springframework.util.StringUtils;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
