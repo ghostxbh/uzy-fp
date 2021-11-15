@@ -3,6 +3,8 @@ package com.uzykj.admin.web;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.uzykj.system.domain.MailProperties;
 import com.uzykj.system.service.MailPropertiesService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
@@ -20,13 +22,15 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-@RequestMapping("/mail/config")
+@RequestMapping("/api/mail/config")
+@Api("mailConfig")
 public class MailConfigController {
     @Autowired
     private MailPropertiesService mailPropertiesService;
 
     @PostMapping("/add")
-    public R addMailConfig(@RequestBody MailProperties mailProperties) {
+    @ApiOperation("增加邮件配置")
+    public R<?> addMailConfig(@RequestBody MailProperties mailProperties) {
         try {
             if (ObjectUtils.isEmpty(mailProperties.getUserId())
                     || ObjectUtils.isEmpty(mailProperties.getMailHost())
@@ -48,8 +52,9 @@ public class MailConfigController {
         }
     }
 
-    @PostMapping("/edit")
-    public R updateMailConfig(@RequestBody MailProperties mailProperties) {
+    @PutMapping("/edit")
+    @ApiOperation("编辑邮件配置")
+    public R<?> updateMailConfig(@RequestBody MailProperties mailProperties) {
         try {
             if (ObjectUtils.isEmpty(mailProperties.getUserId())) {
                 return R.failed("缺少必填参数");
@@ -63,7 +68,23 @@ public class MailConfigController {
         }
     }
 
+    @DeleteMapping("/remove")
+    @ApiOperation("删除邮件配置")
+    public R<?> deleteMailConfig(@RequestParam Integer[] ids) {
+        try {
+            if (ObjectUtils.isEmpty(ids)) {
+                return R.failed("缺少必填参数");
+            }
+            mailPropertiesService.deletePropertiesByIds(ids);
+            return R.ok(null);
+        } catch (Exception e) {
+            log.error("update mail properties error", e);
+            return R.failed("update mail properties error");
+        }
+    }
+
     @GetMapping("/user/{userId}")
+    @ApiOperation("获取用户的邮件配置列表")
     public R<List<MailProperties>> listByUser(@PathVariable Integer userId) {
         try {
             if (ObjectUtils.isEmpty(userId)) {
@@ -78,6 +99,7 @@ public class MailConfigController {
     }
 
     @GetMapping("/company/{companyId}")
+    @ApiOperation("获取企业的邮件配置列表")
     public R<List<MailProperties>> listByCompany(@PathVariable Integer companyId) {
         try {
             if (ObjectUtils.isEmpty(companyId)) {

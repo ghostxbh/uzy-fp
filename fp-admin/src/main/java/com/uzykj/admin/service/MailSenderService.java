@@ -36,7 +36,7 @@ public class MailSenderService {
     @Autowired
     private MailService mailService;
 
-    public void realSender(MailBatchLog mailBatchLog) {
+    public void realSend(MailBatchLog mailBatchLog) {
         MailProperties mailProperties = mailPropertiesService.selectOne(mailBatchLog.getPropertiesId());
         mailBatchLog.setSendTime(new Date());
         mailBatchLogService.addBatchLog(mailBatchLog);

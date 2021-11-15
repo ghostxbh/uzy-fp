@@ -6,6 +6,8 @@ import com.uzykj.admin.service.MailSenderService;
 import com.uzykj.system.domain.MailBatchLog;
 import com.uzykj.system.enums.MailSendStatus;
 import com.uzykj.system.enums.MailSendType;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
@@ -21,13 +23,15 @@ import org.springframework.web.bind.annotation.*;
  */
 @Slf4j
 @RestController
-@RequestMapping("/mail")
+@RequestMapping("/api/mail")
+@Api("mail")
 public class MailController {
     @Autowired
     private MailSenderService mailSenderService;
 
     @PostMapping("/send")
-    public R sendOfPost(@RequestBody MailBatchLog mailBatchLog) {
+    @ApiOperation("邮件发送")
+    public R<?> sendOfPost(@RequestBody MailBatchLog mailBatchLog) {
         log.info("sender param: " + mailBatchLog.toString());
         try {
             if (ObjectUtils.isEmpty(mailBatchLog.getUserId())
@@ -40,7 +44,7 @@ public class MailController {
             mailBatchLog.setSendType(sendType);
             mailBatchLog.setStatus(MailSendStatus.TOBE.getCode());
 
-            mailSenderService.realSender(mailBatchLog);
+            mailSenderService.realSend(mailBatchLog);
             return R.ok(null);
         } catch (Exception e) {
             log.error("mail sender error:", e);
@@ -49,7 +53,8 @@ public class MailController {
     }
 
     @GetMapping("/send")
-    public R sendOfGet(@RequestParam String mailParams) {
+    @ApiOperation("邮件发送")
+    public R<?> sendOfGet(@RequestParam String mailParams) {
         log.info("sender param: " + mailParams);
         try {
             MailBatchLog mailBatchLog = JSONObject.parseObject(mailParams, MailBatchLog.class);
@@ -63,7 +68,7 @@ public class MailController {
             mailBatchLog.setSendType(sendType);
             mailBatchLog.setStatus(MailSendStatus.TOBE.getCode());
 
-            mailSenderService.realSender(mailBatchLog);
+            mailSenderService.realSend(mailBatchLog);
             return R.ok(null);
         } catch (Exception e) {
             log.error("mail sender error:", e);

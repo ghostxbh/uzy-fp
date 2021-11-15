@@ -4,6 +4,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import springfox.documentation.oas.annotations.EnableOpenApi;
 
 /**
  * @Copyright http://fp.uzykj.com
@@ -13,6 +14,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  * @Date 2021/11/5
  * @Version 1.0
  */
+@EnableOpenApi
 @MapperScan("com.uzykj.**.mapper")
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class}, scanBasePackages = "com.uzykj.**")
 public class FpAdminApplication {
