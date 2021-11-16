@@ -9,8 +9,8 @@ package com.uzykj.common.core.response.constant;
  * @Version 1.0
  */
 public class ResponseConstant {
-    public static final Integer SUCCESS = 200;
-    public static final Integer ERROR = 505;
+    public static final Long SUCCESS = 200L;
+    public static final Long ERROR = 505L;
 
     public static final String SUCCESS_MSG = "ok!";
     public static final String ERROR_MSG = "unkown error!";
