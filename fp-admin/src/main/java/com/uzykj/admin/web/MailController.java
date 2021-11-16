@@ -3,6 +3,7 @@ package com.uzykj.admin.web;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.uzykj.admin.service.MailSenderService;
+import com.uzykj.common.core.response.Rep;
 import com.uzykj.system.domain.MailBatchLog;
 import com.uzykj.system.enums.MailSendStatus;
 import com.uzykj.system.enums.MailSendType;
@@ -37,7 +38,7 @@ public class MailController {
             if (ObjectUtils.isEmpty(mailBatchLog.getUserId())
                     || ObjectUtils.isEmpty(mailBatchLog.getPropertiesId())
                     || ObjectUtils.isEmpty(mailBatchLog.getReceiveAddress())) {
-                return R.failed("缺少必填参数");
+                return Rep.error("缺少必填参数");
             }
 
             int sendType = mailBatchLog.getReceiveAddress().contains(";") ? MailSendType.BATCH.getCode() : MailSendType.SINGLE.getCode();
@@ -45,10 +46,10 @@ public class MailController {
             mailBatchLog.setStatus(MailSendStatus.TOBE.getCode());
 
             mailSenderService.realSend(mailBatchLog);
-            return R.ok(null);
+            return Rep.success();
         } catch (Exception e) {
             log.error("mail sender error:", e);
-            return R.failed("mail sender error");
+            return Rep.error("mail sender error");
         }
     }
 
@@ -61,7 +62,7 @@ public class MailController {
             if (ObjectUtils.isEmpty(mailBatchLog.getUserId())
                     || ObjectUtils.isEmpty(mailBatchLog.getPropertiesId())
                     || ObjectUtils.isEmpty(mailBatchLog.getReceiveAddress())) {
-                return R.failed("缺少必填参数");
+                return Rep.error("缺少必填参数");
             }
 
             int sendType = mailBatchLog.getReceiveAddress().contains(";") ? MailSendType.BATCH.getCode() : MailSendType.SINGLE.getCode();
@@ -69,10 +70,10 @@ public class MailController {
             mailBatchLog.setStatus(MailSendStatus.TOBE.getCode());
 
             mailSenderService.realSend(mailBatchLog);
-            return R.ok(null);
+            return Rep.success();
         } catch (Exception e) {
             log.error("mail sender error:", e);
-            return R.failed("mail sender error");
+            return Rep.error("mail sender error");
         }
     }
 }

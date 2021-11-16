@@ -32,4 +32,11 @@ public class Rep extends R {
         r.setMsg(e.getMessage());
         return r;
     }
+
+    public static R error(String msg) {
+        R r = new R();
+        r.setCode(BizCode.ERROR.getCode());
+        r.setMsg(msg);
+        return r;
+    }
 }

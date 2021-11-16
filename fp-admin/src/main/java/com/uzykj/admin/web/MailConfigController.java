@@ -1,6 +1,7 @@
 package com.uzykj.admin.web;
 
 import com.baomidou.mybatisplus.extension.api.R;
+import com.uzykj.common.core.response.Rep;
 import com.uzykj.system.domain.MailProperties;
 import com.uzykj.system.service.MailPropertiesService;
 import io.swagger.annotations.Api;
@@ -36,19 +37,19 @@ public class MailConfigController {
                     || ObjectUtils.isEmpty(mailProperties.getMailHost())
                     || ObjectUtils.isEmpty(mailProperties.getMailUser())
                     || ObjectUtils.isEmpty(mailProperties.getMailPwd())) {
-                return R.failed("缺少必填参数");
+                return Rep.error("缺少必填参数");
             }
 
             MailProperties properties = mailPropertiesService.selectOneByKey(mailProperties.getMailKey());
             if (properties != null) {
-                return R.failed("配置" + mailProperties.getMailKey() + "已存在");
+                return Rep.error("配置" + mailProperties.getMailKey() + "已存在");
             }
 
             mailPropertiesService.addProperties(mailProperties);
-            return R.ok(null);
+            return Rep.success();
         } catch (Exception e) {
             log.error("add mail properties error", e);
-            return R.failed("add mail properties error");
+            return Rep.error("add mail properties error");
         }
     }
 
@@ -57,14 +58,14 @@ public class MailConfigController {
     public R<?> updateMailConfig(@RequestBody MailProperties mailProperties) {
         try {
             if (ObjectUtils.isEmpty(mailProperties.getUserId())) {
-                return R.failed("缺少必填参数");
+                return Rep.error("缺少必填参数");
             }
             mailProperties.setUpdator(mailProperties.getUserId());
             mailPropertiesService.updateProperties(mailProperties);
-            return R.ok(null);
+            return Rep.success();
         } catch (Exception e) {
             log.error("update mail properties error", e);
-            return R.failed("update mail properties error");
+            return Rep.error("update mail properties error");
         }
     }
 
@@ -73,43 +74,43 @@ public class MailConfigController {
     public R<?> deleteMailConfig(@RequestParam Integer[] ids) {
         try {
             if (ObjectUtils.isEmpty(ids)) {
-                return R.failed("缺少必填参数");
+                return Rep.error("缺少必填参数");
             }
             mailPropertiesService.deletePropertiesByIds(ids);
-            return R.ok(null);
+            return Rep.success();
         } catch (Exception e) {
             log.error("update mail properties error", e);
-            return R.failed("update mail properties error");
+            return Rep.error("update mail properties error");
         }
     }
 
     @GetMapping("/user/{userId}")
     @ApiOperation("获取用户的邮件配置列表")
-    public R<List<MailProperties>> listByUser(@PathVariable Integer userId) {
+    public R<?> listByUser(@PathVariable Integer userId) {
         try {
             if (ObjectUtils.isEmpty(userId)) {
-                return R.failed("没有用户ID");
+                return Rep.error("没有用户ID");
             }
             List<MailProperties> mailProperties = mailPropertiesService.selectByUser(userId);
-            return R.ok(mailProperties);
+            return Rep.success(mailProperties);
         } catch (Exception e) {
             log.error("get mail properties list by user error", e);
-            return R.failed("get mail properties list by user error");
+            return Rep.error("get mail properties list by user error");
         }
     }
 
     @GetMapping("/company/{companyId}")
     @ApiOperation("获取企业的邮件配置列表")
-    public R<List<MailProperties>> listByCompany(@PathVariable Integer companyId) {
+    public R<?> listByCompany(@PathVariable Integer companyId) {
         try {
             if (ObjectUtils.isEmpty(companyId)) {
-                return R.failed("没有用户ID");
+                return Rep.error("没有用户ID");
             }
             List<MailProperties> mailProperties = mailPropertiesService.selectByCompany(companyId);
-            return R.ok(mailProperties);
+            return Rep.success(mailProperties);
         } catch (Exception e) {
             log.error("get mail properties list by company error", e);
-            return R.failed("get mail properties list by company error");
+            return Rep.error("get mail properties list by company error");
         }
     }
 }
